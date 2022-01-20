@@ -6,11 +6,12 @@ import {Flex, Box, Card, Text, Spinner, Stack} from '@sanity/ui'
 interface Props {
   isLoading: boolean
   sites?: Site[]
+  personalToken?: string
   onDeploy: DeployAction
 }
 
 export default function SiteList(props: Props) {
-  const {isLoading, onDeploy, sites} = props
+  const {isLoading, onDeploy, sites, personalToken} = props
   if (isLoading) {
     return (
       <Card padding={4}>
@@ -34,7 +35,7 @@ export default function SiteList(props: Props) {
     <Box paddingY={2}>
       <Stack as="ul" space={2}>
         {sites.map((site, index) => {
-          return <SiteItem onDeploy={onDeploy} site={site} key={`site-${index}`} />
+          return <SiteItem onDeploy={onDeploy} site={site} personalToken={personalToken || site.personalToken} key={`site-${index}`} />
         })}
       </Stack>
     </Box>

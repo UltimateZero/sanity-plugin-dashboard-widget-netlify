@@ -10,6 +10,7 @@ const noop = () => undefined
 const INITIAL_PROPS = {
   title: 'Netlify sites',
   sites: [],
+  personalToken: '',
   isLoading: true,
   onDeploy: noop,
 }
@@ -23,6 +24,7 @@ export const props$ = (options: WidgetOptions) => {
     buildHookId: site.buildHookId,
     url: site.url || (site.name && `https://${site.name}.netlify.app/`),
     adminUrl: site.name && `https://app.netlify.com/sites/${site.name}`,
+    personalToken: site.personalToken || options.personalToken
   }))
 
   const [onDeploy$, onDeploy] = createEventHandler<Site>()
@@ -43,6 +45,7 @@ export const props$ = (options: WidgetOptions) => {
       sites,
       title: options.title || INITIAL_PROPS.title,
       description: options.description,
+      personalToken: options.personalToken,
       isLoading: false,
       onDeploy,
     })),

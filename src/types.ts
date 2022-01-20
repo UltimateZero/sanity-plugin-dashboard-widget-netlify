@@ -4,11 +4,13 @@ export interface SiteWidgetOption {
   title: string
   buildHookId: string
   url?: string
+  personalToken?: string
 }
 export interface WidgetOptions {
   title?: string
   description?: string
   sites: SiteWidgetOption[]
+  personalToken?: string
 }
 
 export interface Site {
@@ -18,12 +20,14 @@ export interface Site {
   url?: string
   adminUrl?: string
   buildHookId: string
+  personalToken?: string
 }
 
 export interface Props {
   title?: string
   description?: string
   sites?: Site[]
+  personalToken?: string
   isLoading: boolean
   onDeploy: DeployAction
 }
